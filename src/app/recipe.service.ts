@@ -10,13 +10,13 @@ export class RecipeService {
     {
       id: 'r1',
       title: 'Dings Bagoong',
-      imageUrl: 'D:\JAMES\Personal\Source_Codes\ionic\test-app-start\images\image1.jpg',
+      imageUrl: 'file:///D:/JAMES/Personal/Source_Codes/ionic/test-app-start/images/image1.JPG',
       ingredients: ['Alamang', 'Ketchup', 'Mayumo']
     },
     {
       id: 'r2',
       title: 'Pizza',
-      imageUrl: 'D:\JAMES\Personal\Source_Codes\ionic\test-app-start\images\image2.jpg',
+      imageUrl: 'file:///D:/JAMES/Personal/Source_Codes/ionic/test-app-start/images/image2.jpg',
       ingredients: ['Dough', 'Bell Pepper', 'Cheese']
     }
   

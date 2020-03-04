@@ -99,4 +99,11 @@ const routes: Routes = [
 
 - access the newly created service on recipe.page.ts
 
+- inject ActivatedRoute to recipe-detail.page (import mo n rin)
+-- blah blah paramMap, observable
+-- observables are objects to subcribe to, to get data(one time data, or multiple)
+- inject recipes service
+
+- access the loadedrecipe in the recipe-detail.page.html
+
 
