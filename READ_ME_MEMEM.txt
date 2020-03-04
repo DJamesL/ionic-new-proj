@@ -85,3 +85,18 @@ const routes: Routes = [
     ]
   }
 ];
+
+- ADD ANGULAR SERVICE
+-- ionic generate service recipes
+
+- Move the recipe data from recipe.page.ts to recipe.service.ts RecipeService
+- Allow the moved recipe to be accessed by recipe.page.ts
+-- import the recipes data struct from recipe.model.ts
+-- can be done my creating methods (getter for all, getter for specific)
+-- set recipes data to private 
+-- blah blah blah on the primitive vs reference types
+-- blah blah on the find method 
+
+- access the newly created service on recipe.page.ts
+
+
