@@ -107,3 +107,7 @@ const routes: Routes = [
 - access the loadedrecipe in the recipe-detail.page.html
 
 
+- add an onclick listener for each ionic item
+-- can also use a routerLink(angular command)
+- add an ionic-back button
+-- add a defaultback page, in case that the child page is loaded at startup
