@@ -120,3 +120,10 @@ const routes: Routes = [
 
 - add.import alert controller 
 - configured alert controller, w/ meassage and stuffs
+
+working together w/ angular components
+- generate an ionic component
+- copy item from page.html to component.html
+- bindable add @
+- must import on the module that will use it, e.g. recipe-module.ts
+- can be access in html by using the selector, found in recipe-item.components
