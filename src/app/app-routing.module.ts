@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'recipes', pathMatch: 'full' },
+  { path: '', redirectTo: 'recipe', pathMatch: 'full' },
   {
-    path: 'recipes',
+    path: 'recipe',
     children: [
       {
         path: "",

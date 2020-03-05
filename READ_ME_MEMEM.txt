@@ -111,3 +111,12 @@ const routes: Routes = [
 -- can also use a routerLink(angular command)
 - add an ionic-back button
 -- add a defaultback page, in case that the child page is loaded at startup
+
+- add delete button
+- add deleterecipe method in RecipeService
+- add onclick method for button (onDeleteRecipe) 
+- create method onDeleteRecipe
+-- added routing; when a recipe is deleted, the page will be auto route to home
+
+- add.import alert controller 
+- configured alert controller, w/ meassage and stuffs
