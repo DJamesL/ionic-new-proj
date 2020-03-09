@@ -28,7 +28,27 @@ export class RecipeDetailPage implements OnInit {
       const recipeId = paramMap.get('recipeId');
       this.loadedRecipe = this.recipesService.getRecipe(recipeId);
     });
+    console.log("OnInit - Detail");
+  }
 
+  ionViewWillEnter(){
+    console.log("will enter - Detail");
+  }
+
+  ionViewDidEnter(){
+    console.log("Did enter - Detail");
+  }
+
+  ionViewWillLeave(){
+    console.log("will Leave - Detail");
+  }
+
+  ionViewDidLeave(){
+    console.log("Did Leave - Detail");
+  }
+
+  ngOnDestroy(){
+    console.log("OnDestroy - Detail");
   }
 
   onDeleteRecipe(){this.alertCtrl
@@ -43,6 +63,7 @@ export class RecipeDetailPage implements OnInit {
         {
           text: 'Delete',
           handler: () => {
+            console.log(this.loadedRecipe.id);
             this.recipesService.deleteRecipe(this.loadedRecipe.id);
             this.router.navigate(['/recipe']);
           }

@@ -127,3 +127,23 @@ working together w/ angular components
 - bindable add @
 - must import on the module that will use it, e.g. recipe-module.ts
 - can be access in html by using the selector, found in recipe-item.components
+
+
+DEBUGGING
+- console.log("string")
+- setting breakpoint
+-- use Chrome Developer, Sources-> (left pane) webpack -> . ->
+-- set breakpoint by double click
+- Visual studio code built-in DEBUGGING
+-- see https://code.visualstudio.com/docs/nodejs/angular-tutorial#_debugging-angular
+- Network Tab in chrome debugger, for http requests or download files
+- Elment - for the UI, xml. Use the click
+- Performance & Memory Tab
+- https://developers.google.com/web/tools/chrome-devtools/
+
+LIFECYCLE
+- ngOnInit (push)-> ionViewWillEnter -> ionViewDidEnter -> ionViewWillLeave -> ionViewDidLeave
+- ngOnDestroy (pop)
+- actual sequence when leaving
+- ionViewWillLeave (old page) -> ionViewWillEnter (new page) -> ionViewDidEnter (new page) -> ionViewDidLeave(old page)
+- ngOnDestroy, called when back is press
