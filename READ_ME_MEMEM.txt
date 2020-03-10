@@ -169,3 +169,9 @@ ADDING TABS
 -- create a separate file for routing(similar to app-routing.modules.ts) (new in Ionic 4? meron na agad eh)
 -- for routing HARDCODED first!
 - remove places header
+
+PREPARING DATA SERVICES
+- create a data model first
+-- new file for place-model
+- create a service
+- create dummy data in the newly created service
