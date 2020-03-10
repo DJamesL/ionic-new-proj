@@ -159,3 +159,13 @@ NEWPROJ
 --- new edit-offer page inside offers
 --- offer-bookings inside offers
 - add new bookings page
+
+ADJUST MAIN ROUTING confi
+
+ADDING TABS
+- remove padding on places.html
+-- follow tabs format
+- routing
+-- create a separate file for routing(similar to app-routing.modules.ts) (new in Ionic 4? meron na agad eh)
+-- for routing HARDCODED first!
+- remove places header
