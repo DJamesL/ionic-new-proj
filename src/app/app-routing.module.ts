@@ -2,19 +2,18 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'recipe', pathMatch: 'full' },
+  { path: '', redirectTo: 'places', pathMatch: 'full' },
   {
-    path: 'recipe',
-    children: [
-      {
-        path: "",
-        loadChildren: () => import('./recipe/recipe.module').then( m => m.RecipePageModule)
-      },
-      {
-        path: ":recipeId",
-        loadChildren: () => import('./recipe/recipe-detail/recipe-detail.module').then( m => m.RecipeDetailPageModule)
-      },     
-    ]
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
+  },
+  {
+    path: 'places',
+    loadChildren: () => import('./places/places.module').then( m => m.PlacesPageModule)
+  },
+  {
+    path: 'bookings',
+    loadChildren: () => import('./bookings/bookings.module').then( m => m.BookingsPageModule)
   }
 ];
 

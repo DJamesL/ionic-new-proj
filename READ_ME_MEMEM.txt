@@ -147,3 +147,15 @@ LIFECYCLE
 - actual sequence when leaving
 - ionViewWillLeave (old page) -> ionViewWillEnter (new page) -> ionViewDidEnter (new page) -> ionViewDidLeave(old page)
 - ngOnDestroy, called when back is press
+
+NEWPROJ
+- delete recipes folder
+- add new auth page
+- add new places page
+-- new discover page inside places
+--- place-detail inside discover
+-- new offers page inside places
+--- new new-offer page inside offers
+--- new edit-offer page inside offers
+--- offer-bookings inside offers
+- add new bookings page
