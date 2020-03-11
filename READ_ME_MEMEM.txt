@@ -175,3 +175,9 @@ PREPARING DATA SERVICES
 -- new file for place-model
 - create a service
 - create dummy data in the newly created service
+
+ACCESSING DATA for places
+- to access the dummy data from places service to discover page/folder
+-- inject it to the discover.page.ts
+- configure html for discover.
+-- take note of how to access data from the discover.page.ts file
