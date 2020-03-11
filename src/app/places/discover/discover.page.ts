@@ -16,4 +16,7 @@ export class DiscoverPage implements OnInit {
     this.loadedPlaces = this.placesService.places;
   }
 
+//  onOpenMenu() {
+//    this.menuCtrl.toggle();
+//  }
 }

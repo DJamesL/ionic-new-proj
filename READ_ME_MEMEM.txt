@@ -194,3 +194,19 @@ ADD FORWARDING NAVIGATIOn
 -- set a onclick listener
 - create the method of the onClick listener (.ts file nya)
 -- using navCtrl, setup for a back function
+
+NAVIGATING VIA toolbar
+- buttons on a toolbar should be in a <ion-buttons>
+- add buttons on offer pages
+
+- use ActivatedRoute for subscribing to dynamic links
+
+ADDING THE SIDE MENU
+- side menu should be added, on the discover, offer and bookings pages
+- OR to get it to float across the whole app. put in on app.component.html
+- create action for opening/closing
+-- goto the concern page(e.g. offers page), create a ion-buttons, ion-menu-button
+-- if multiple side menu, use menuId, menu="m1"
+
+- can also use menuCtrl (see discover)
+- for onclick functions, add a button in the html
