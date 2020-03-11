@@ -181,3 +181,16 @@ ACCESSING DATA for places
 -- inject it to the discover.page.ts
 - configure html for discover.
 -- take note of how to access data from the discover.page.ts file
+
+ADD FORWARDING NAVIGATIOn
+- add button("MORE") to see the detail of the featured place
+-- add router routerLink
+- set other loaded place detail w/ an arrow, so users will know its clickable
+-- use detail attribute in xml
+
+- add back button
+- add default ref when the forwarded page is reloaded
+- add a Book button, on the place detail
+-- set a onclick listener
+- create the method of the onClick listener (.ts file nya)
+-- using navCtrl, setup for a back function
