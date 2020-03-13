@@ -10,21 +10,21 @@ export class PlacesService {
       'p1',
       'Lewis Grand Hotel',
       'Biggest Hotel in Angeles City',
-      '',
+      'https://new-hls.s3.amazonaws.com/hls/data/2489/website/general/bn/mobile_banner-1.jpg',
       20000
     ),
     new Place(
       'p2',
       'Solaire Resort and Casino',
       'It\' more fun in Solarire',
-      '',
+      'https://pix10.agoda.net/hotelImages/443/443319/443319_16011414340039132431.jpg?s=1024x768',
       120000
     ),
     new Place(
       'p3',
       'Manhattan Place',
       'The home that never sleeps',
-      '',
+      'https://upload.wikimedia.org/wikipedia/commons/2/2f/Manhattan_Place.jpg',
       30000
     )
   ];

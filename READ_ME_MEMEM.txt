@@ -210,3 +210,14 @@ ADDING THE SIDE MENU
 
 - can also use menuCtrl (see discover)
 - for onclick functions, add a button in the html
+
+ADDING AUTHENTICATION GUARD
+- ionic generate guard auth/auth
+-- select implement CanLoad
+-- delete auth.guard.spec.ts
+-- CanActivate, CanLoad(runs before the lazyload is fetch )
+-- are also srevices
+- inject auth.services in auth.guard.ts
+-- return the boolean if user isauthenticated
+- add guard block on pages in app routing
+
