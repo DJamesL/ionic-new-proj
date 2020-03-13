@@ -221,3 +221,11 @@ ADDING AUTHENTICATION GUARD
 -- return the boolean if user isauthenticated
 - add guard block on pages in app routing
 
+ADDING MODAL
+- generate a component bookings/create-booking
+-- whenever opening a component (not router, not selector)
+-- put it in a entryComponents:[CreateBookingComponent]
+- link it to place-detail component (since it is the one that will use it)
+
+PASSING DATA
+- you can pass data by using componentProps to the create  method (keypair value)
