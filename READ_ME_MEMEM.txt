@@ -229,3 +229,38 @@ ADDING MODAL
 
 PASSING DATA
 - you can pass data by using componentProps to the create  method (keypair value)
+
+ION-GRID
+- <ion-grid>, <ion-row>, <ion-column>
+- 12 column size
+- grid-> row -> column
+- add a fixed attribute to limit the grid width
+- add a "no-padding" to remove padding
+- controlling size by -> size="10"
+-- size-sm, -sm, md, lg, xl 
+- centering by using -> offset="4" <-from the left ang measurement
+- vertical alignment adjustment-> align-items-stretch, -start, -end, -center
+- horizontal alignment adjust-> justify-content-start, -end, -center
+
+List vs grid
+- LIST
+-- renders <ion-item> vertically, top to bottom
+-- contains ion-item only
+-- use for scrollable, vertical list content
+
+- GRID
+-- renders any content
+-- ion-grid => ion-row => ion-column
+-- use for any content that should be structured on a grid
+
+- ion-label inside ion-item, for holding text related 
+-- can also have other html headers
+-- position="floating", the label floats when it is click
+
+- ion-text
+-- for styling a text color, (simple)
+
+SLIDABLE ION-item
+- use <ion-item-sliding>, then put the <ion-item> inside it
+-- at the end,(still inside ion-item-sliding), put ion-item-options, w/ child ion-item-option
+-- reference something in html by adding #

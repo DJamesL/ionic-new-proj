@@ -1,5 +1,7 @@
 {
   "name": "test-app-start",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
