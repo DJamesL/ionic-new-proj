@@ -280,3 +280,7 @@ ADD segmented buttons
 - the value="text", is a form of id that can be accessed
 
 ADDING a spinner
+- usage of <ion-spinner>
+
+Loading controller
+- jsut copy the syntax
