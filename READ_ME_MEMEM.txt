@@ -269,3 +269,12 @@ Virtual scrolling
 - will not render if not on the view port( not shown on the screen)
 - performance optimization
 - advantageous for long list/updating list.
+
+<ION-IMG>
+- lazy loading(loads only when needed)
+- ion-avatar -> round border
+- ion-thumbnail -> straight border
+
+ADD segmented buttons
+- see the syntax on how it created a customevent
+- the value="text", is a form of id that can be accessed
