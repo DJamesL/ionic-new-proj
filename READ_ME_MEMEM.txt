@@ -264,3 +264,8 @@ SLIDABLE ION-item
 - use <ion-item-sliding>, then put the <ion-item> inside it
 -- at the end,(still inside ion-item-sliding), put ion-item-options, w/ child ion-item-option
 -- reference something in html by adding #
+
+Virtual scrolling
+- will not render if not on the view port( not shown on the screen)
+- performance optimization
+- advantageous for long list/updating list.
