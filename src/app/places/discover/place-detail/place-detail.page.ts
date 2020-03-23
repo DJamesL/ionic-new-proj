@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { NavController, ModalController } from '@ionic/angular';
-import { PlacesService } from '../../places.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import {
+  NavController,
+  ModalController,
+  ActionSheetController
+} from "@ionic/angular";
+import { PlacesService } from "../../places.service";
 
-import { CreateBookingComponent } from 'src/app/bookings/create-booking/create-booking.component';
-import { Place } from '../../places-data-model';
+import { CreateBookingComponent } from "src/app/bookings/create-booking/create-booking.component";
+import { Place } from "../../places-data-model";
 
 @Component({
-  selector: 'app-place-detail',
-  templateUrl: './place-detail.page.html',
-  styleUrls: ['./place-detail.page.scss'],
+  selector: "app-place-detail",
+  templateUrl: "./place-detail.page.html",
+  styleUrls: ["./place-detail.page.scss"]
 })
 export class PlaceDetailPage implements OnInit {
   place: Place;
@@ -18,22 +22,46 @@ export class PlaceDetailPage implements OnInit {
     private navCtrl: NavController,
     private route: ActivatedRoute,
     private placesService: PlacesService,
-    private modalCtrl: ModalController
-    ) { }
+    private modalCtrl: ModalController,
+    private actionSheetCtrl: ActionSheetController
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
-      if (!paramMap.has('placeId')) {
-        this.navCtrl.navigateBack('/places/tabs/discover');
+      if (!paramMap.has("placeId")) {
+        this.navCtrl.navigateBack("/places/tabs/discover");
         return;
       }
-      this.place = this.placesService.getPlace(paramMap.get('placeId'));
+      this.place = this.placesService.getPlace(paramMap.get("placeId"));
     });
   }
 
-  onBookPlace(){
+  onBookPlace() {
     //this.router.navigateByUrl("/places/tabs/discover");
     //this.navCtrl.navigateBack("/places/tabs/discover");
+    this.actionSheetCtrl.create({
+      header: "Choose and Action",
+      buttons: [
+        {
+          text: "Select Date",
+          handler: () => { this.openBookingModal('select') }
+        },
+        {
+          text: "Random Date",
+          handler: () => { this.openBookingModal('random') }
+        },
+        {
+          text: "Cancel",
+          role: "cancel"
+        }
+      ]
+    }).then(actionSheetEl => {
+      actionSheetEl.present();
+    });
+  }
+
+  openBookingModal(mode: "select" | "random") {
+    console.log(mode);
     this.modalCtrl
       .create({
         component: CreateBookingComponent,
@@ -45,8 +73,8 @@ export class PlaceDetailPage implements OnInit {
       })
       .then(resultData => {
         console.log(resultData.data, resultData.role);
-        if (resultData.role === 'confirm') {
-          console.log('BOOKED!');
+        if (resultData.role === "confirm") {
+          console.log("BOOKED!");
         }
       });
   }

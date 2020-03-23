@@ -284,3 +284,6 @@ ADDING a spinner
 
 Loading controller
 - jsut copy the syntax
+
+action sheet controller
+- see the docs, look for controllers.
