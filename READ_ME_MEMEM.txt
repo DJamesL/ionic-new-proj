@@ -278,3 +278,5 @@ Virtual scrolling
 ADD segmented buttons
 - see the syntax on how it created a customevent
 - the value="text", is a form of id that can be accessed
+
+ADDING a spinner

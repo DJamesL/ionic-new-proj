@@ -15,6 +15,10 @@
       <ion-input></ion-input>
     </ion-item>
   </ion-list>
-
-  <ion-button color="primary" (click)="onLogin()">LOGIN</ion-button>
+  <div text-center>
+    <ion-spinner color="primary" *ngIf="isLoading"></ion-spinner>
+  </div>
+  <ion-button color="primary" (click)="onLogin()" *ngIf="!isLoading"
+    >LOGIN</ion-button
+  >
 </ion-content>

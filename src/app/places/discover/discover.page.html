@@ -11,8 +11,8 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-segment (ionChange)="onFilterUpdate($event)">
-    <ion-segment-button value="all" checked>All Bookings</ion-segment-button>
+  <ion-segment (ionChange)="onFilterUpdate($event)" value="all">
+    <ion-segment-button value="all">All Bookings</ion-segment-button>
     <ion-segment-button value="bookable">Bookable Items</ion-segment-button>
   </ion-segment>
   <ion-grid>
