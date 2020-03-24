@@ -3,6 +3,7 @@ import { AuthGuard } from "./auth.guard";
 import { AuthService } from "./auth.service";
 import { Router } from "@angular/router";
 import { LoadingController } from "@ionic/angular";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: "app-auth",
@@ -33,5 +34,9 @@ export class AuthPage implements OnInit {
       });
     this.authService.login();
 
+  }
+
+  onSubmit(form: NgForm) {
+    console.log(form)
   }
 }
