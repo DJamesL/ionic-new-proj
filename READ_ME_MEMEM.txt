@@ -326,3 +326,5 @@ for platform specific styling, use below:
 
 theming, application colors 
 - --ion-toolbar-background: var(--ion-color-primary, black) <- inside the root, fallback black color
+
+USE CUSTOM CSS to adjust style of offer.title
