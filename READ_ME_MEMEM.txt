@@ -287,3 +287,42 @@ Loading controller
 
 action sheet controller
 - see the docs, look for controllers.
+
+STYLING and THEMING
+- Themes
+-- app wide styling
+-- base color, sizes, entryComponents
+-- can be overwritten on component level
+-- use for general styling and app identity
+- CSS variables
+-- override default component styles
+-- reuse CSS property values
+-- add your own variables
+-- set dynamic, reusable styles
+- Grid, attributes etc (adjustable by css variables)
+-- declarative(in-template) styling
+-- choose the default styles
+-- combine / custom styles and global Themes
+- Custom CSS
+-- style anythin(inc ionic components)
+-- override other(base) styles
+-- add missing styles
+-- fine tuning
+
+https://ionicframework.com/docs/theming/basics
+
+theme folder
+- variable.scss file for variables
+- global.scss for global styling
+
+see https://ionicframework.com/docs/theming/color-generator
+
+for platform specific styling, use below:
+.md for material design (web & android)
+
+.ios{
+  --ion-color-primary: #3880ff;
+}
+
+theming, application colors 
+- --ion-toolbar-background: var(--ion-color-primary, black) <- inside the root, fallback black color
