@@ -4,6 +4,7 @@ import { NavController } from '@ionic/angular';
 
 import { Place } from '../../places-data-model';
 import { PlacesService } from '../../places.service';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-edit-offer',
   templateUrl: './edit-offer.page.html',
@@ -11,12 +12,13 @@ import { PlacesService } from '../../places.service';
 })
 export class EditOfferPage implements OnInit {
   place: Place;
+  form: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private placesService: PlacesService,
     private navCtrl: NavController
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
@@ -25,6 +27,23 @@ export class EditOfferPage implements OnInit {
         return;
       }
       this.place = this.placesService.getPlace(paramMap.get('placeId'));
+      this.form = new FormGroup({
+        title: new FormControl(this.place.title, {    //null here is default value
+          updateOn: 'blur',
+          validators: [Validators.required]
+        }),
+        description: new FormControl(this.place.description, {
+          updateOn: 'blur',
+          validators: [Validators.required, Validators.maxLength(180)]
+        })
+      });
     });
+  }
+
+  onEditDone() {
+    if (!this.form.valid) {
+      return;
+    }
+    console.log("DONE modafuka!")
   }
 }
