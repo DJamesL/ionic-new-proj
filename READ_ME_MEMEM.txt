@@ -330,3 +330,5 @@ theming, application colors
 USE CUSTOM CSS to adjust style of offer.title
 
 search more on validation of forms inputs.
+
+.getDate() = Jan 1, 1970

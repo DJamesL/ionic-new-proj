@@ -39,25 +39,31 @@ export class PlaceDetailPage implements OnInit {
   onBookPlace() {
     //this.router.navigateByUrl("/places/tabs/discover");
     //this.navCtrl.navigateBack("/places/tabs/discover");
-    this.actionSheetCtrl.create({
-      header: "Choose and Action",
-      buttons: [
-        {
-          text: "Select Date",
-          handler: () => { this.openBookingModal('select') }
-        },
-        {
-          text: "Random Date",
-          handler: () => { this.openBookingModal('random') }
-        },
-        {
-          text: "Cancel",
-          role: "cancel"
-        }
-      ]
-    }).then(actionSheetEl => {
-      actionSheetEl.present();
-    });
+    this.actionSheetCtrl
+      .create({
+        header: "Choose and Action",
+        buttons: [
+          {
+            text: "Select Date",
+            handler: () => {
+              this.openBookingModal("select");
+            }
+          },
+          {
+            text: "Random Date",
+            handler: () => {
+              this.openBookingModal("random");
+            }
+          },
+          {
+            text: "Cancel",
+            role: "cancel"
+          }
+        ]
+      })
+      .then(actionSheetEl => {
+        actionSheetEl.present();
+      });
   }
 
   openBookingModal(mode: "select" | "random") {
@@ -65,7 +71,7 @@ export class PlaceDetailPage implements OnInit {
     this.modalCtrl
       .create({
         component: CreateBookingComponent,
-        componentProps: { selectedPlace: this.place }
+        componentProps: { selectedPlace: this.place, selectedMode: mode }
       })
       .then(modalEl => {
         modalEl.present();
