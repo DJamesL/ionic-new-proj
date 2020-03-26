@@ -3,7 +3,7 @@ import { AuthService } from "./../auth/auth.service";
 import { Injectable } from "@angular/core";
 import { Place } from "./places-data-model";
 import { BehaviorSubject } from "rxjs";
-import { take, map, tap, delay } from "rxjs/operators";
+import { take, map, tap, delay, switchMap } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -64,6 +64,7 @@ export class PlacesService {
     dateFrom: Date,
     dateTo: Date
   ) {
+    let generatedId: string; //local variable?
     const newPlace = new Place(
       Math.random().toString(),
       title,
@@ -75,13 +76,23 @@ export class PlacesService {
       this.authService.userId
     );
     return this.http
-      .post("https://ionic-angular-tuts.firebaseio.com/offered-places.json", {
-        ...newPlace,
-        id: null
-      })
+      .post<{ name: string }>(
+        "https://ionic-angular-tuts.firebaseio.com/offered-places.json",
+        {
+          ...newPlace,
+          id: null
+        }
+      )
       .pipe(
-        tap(resData => {
-          console.log(resData);
+        switchMap(resData => {
+          generatedId = resData.name;
+          return this.places;
+        }),
+        take(1),
+        tap(places => {
+          //pipe(take(1)) take 1 update then unsubscribe
+          newPlace.id = generatedId;
+          this._places.next(places.concat(newPlace));
         })
       );
     // return this._places.pipe(
