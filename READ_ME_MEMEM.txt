@@ -332,3 +332,13 @@ USE CUSTOM CSS to adjust style of offer.title
 search more on validation of forms inputs.
 
 .getDate() = Jan 1, 1970
+
+USING SUBJECT in replacement to ionViewDidEnter.. lifecycle
+-> subject is an import contruct (from RxJS)
+-> emit & subscribe event
+-> subscribe and refresh data when an update happens. 
+-> will happen on the background
+
+Note on typescript generic types! angle bracket
+
+Clear subscriptions when page exits, to avoid memory leaks
