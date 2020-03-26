@@ -27,7 +27,7 @@ export class PlacesService {
       120000,
       new Date("2020-02-13"),
       new Date("2024-03-15"),
-      "admin"
+      "power-user"
     ),
     new Place(
       "p3",
