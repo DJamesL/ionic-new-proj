@@ -1,3 +1,4 @@
+import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { AuthService } from "./../auth/auth.service";
 import { Injectable } from "@angular/core";
 import { Place } from "./places-data-model";
@@ -45,7 +46,7 @@ export class PlacesService {
     return this._places.asObservable();
   }
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private http: HttpClient) {}
 
   getPlace(id: string) {
     return this.places.pipe(
@@ -73,14 +74,24 @@ export class PlacesService {
       dateTo,
       this.authService.userId
     );
-    return this._places.pipe(
-      take(1),
-      delay(1000),
-      tap(places => {
-        //pipe(take(1)) take 1 update then unsubscribe
-        this._places.next(places.concat(newPlace));
+    return this.http
+      .post("https://ionic-angular-tuts.firebaseio.com/offered-places.json", {
+        ...newPlace,
+        id: null
       })
-    );
+      .pipe(
+        tap(resData => {
+          console.log(resData);
+        })
+      );
+    // return this._places.pipe(
+    //   take(1),
+    //   delay(1000),
+    //   tap(places => {
+    //     //pipe(take(1)) take 1 update then unsubscribe
+    //     this._places.next(places.concat(newPlace));
+    //   })
+    // );
   }
 
   updatePlace(placeId: string, title: string, description: string) {

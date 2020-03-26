@@ -342,3 +342,14 @@ USING SUBJECT in replacement to ionViewDidEnter.. lifecycle
 Note on typescript generic types! angle bracket
 
 Clear subscriptions when page exits, to avoid memory leaks
+
+FirebASe
+- login using google account
+- Click go to console
+- Add project
+- fill up proj name
+- default settings, tpos i accept. 
+- after loading, go to Database on left pane
+- select Realtime Database
+- create->start in test mode, enable, wait to finish
+- get the url 
