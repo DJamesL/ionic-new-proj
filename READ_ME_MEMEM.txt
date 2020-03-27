@@ -357,3 +357,10 @@ FirebASe
 Use ` character (shift tilde) for editable/dynamic string value
 together w/ ${}
 -> `https://ionic-angular-tuts.firebaseio.com/offered-places/${}.json`
+
+add in firebase rules:
+      "bookings": {
+        ".indexOn": ["userId"]
+      }
+
+https://angular.io/guide/architecture
