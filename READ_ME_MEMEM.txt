@@ -353,3 +353,6 @@ FirebASe
 - select Realtime Database
 - create->start in test mode, enable, wait to finish
 - get the url 
+
+Use ` character (shift tilde) for editable/dynamic string value
+-> `https://ionic-angular-tuts.firebaseio.com/offered-places/${}.json`

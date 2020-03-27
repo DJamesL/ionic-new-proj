@@ -80,8 +80,8 @@ export class PlacesService {
               );
             }
           }
-          // return places;
-          return [];
+          return places;
+          //return [];
         }),
         tap(places => {
           this._places.next(places);
@@ -152,12 +152,12 @@ export class PlacesService {
   }
 
   updatePlace(placeId: string, title: string, description: string) {
+    let updatedPlaces: Place[];
     return this.places.pipe(
       take(1),
-      delay(1000),
-      tap(places => {
+      switchMap(places => {
         const updatedPlaceIndex = places.findIndex(pl => pl.id === placeId);
-        const updatedPlaces = [...places];
+        updatedPlaces = [...places];
         const oldPlace = updatedPlaces[updatedPlaceIndex];
         updatedPlaces[updatedPlaceIndex] = new Place(
           oldPlace.id,
@@ -169,6 +169,12 @@ export class PlacesService {
           oldPlace.availableTo,
           oldPlace.userId
         );
+        return this.http.put(
+          `https://ionic-angular-tuts.firebaseio.com/offered-places/${placeId}.json`,
+          { ...updatedPlaces[updatedPlaceIndex], id: null }
+        );
+      }),
+      tap(resData => {
         this._places.next(updatedPlaces);
       })
     );
