@@ -15,12 +15,12 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size-sm="6" offset-sm="3" text-center padding>
+      <ion-col size-sm="6" offset-sm="3" class="james_center" padding>
         <p>{{ place.description }}</p>
       </ion-col>
     </ion-row>
     <ion-row *ngIf="isBookable">
-      <ion-col size-sm="6" offset-sm="3" text-center>
+      <ion-col size-sm="6" offset-sm="3" class="james_center">
         <ion-button color="primary" margin (click)="onBookPlace()"
           >Book</ion-button
         >
