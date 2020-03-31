@@ -364,3 +364,5 @@ add in firebase rules:
       }
 
 https://angular.io/guide/architecture
+
+https://developers.google.com/maps/documentation/javascript/get-api-key

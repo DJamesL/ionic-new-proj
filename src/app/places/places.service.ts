@@ -1,3 +1,4 @@
+import { PlaceLocation } from "./location.model";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { AuthService } from "./../auth/auth.service";
 import { Injectable } from "@angular/core";
@@ -13,7 +14,9 @@ interface placeDataFromServer {
   price: number;
   title: string;
   userId: string;
+  location: PlaceLocation;
 }
+
 @Injectable({
   providedIn: "root"
 })
@@ -76,32 +79,22 @@ export class PlacesService {
                   responseData[key].price,
                   new Date(responseData[key].availableFrom),
                   new Date(responseData[key].availableTo),
-                  responseData[key].userId
+                  responseData[key].userId,
+                  responseData[key].location
                 )
               );
             }
           }
           return places;
-          //return [];
+          // return [];
         }),
         tap(places => {
           this._places.next(places);
         })
       );
-    // .pipe(
-    //   tap(resData => {
-    //     console.log(resData);
-    //   })
-    // );
   }
 
   getPlace(id: string) {
-    // return this.places.pipe(
-    //   take(1),
-    //   map(places => {
-    //     return { ...places.find(p => p.id === id) };
-    //   })
-    // );
     return this.http
       .get<placeDataFromServer>(
         `https://ionic-angular-tuts.firebaseio.com/offered-places/${id}.json`
@@ -116,7 +109,8 @@ export class PlacesService {
             placeData.price,
             new Date(placeData.availableFrom),
             new Date(placeData.availableTo),
-            placeData.userId
+            placeData.userId,
+            placeData.location
           );
         })
       );
@@ -127,7 +121,8 @@ export class PlacesService {
     description: string,
     price: number,
     dateFrom: Date,
-    dateTo: Date
+    dateTo: Date,
+    location: PlaceLocation
   ) {
     let generatedId: string; //local variable?
     const newPlace = new Place(
@@ -138,7 +133,8 @@ export class PlacesService {
       price,
       dateFrom,
       dateTo,
-      this.authService.userId
+      this.authService.userId,
+      location
     );
     return this.http
       .post<{ name: string }>(
@@ -193,14 +189,15 @@ export class PlacesService {
           oldPlace.price,
           oldPlace.availableFrom,
           oldPlace.availableTo,
-          oldPlace.userId
+          oldPlace.userId,
+          oldPlace.location
         );
         return this.http.put(
           `https://ionic-angular-tuts.firebaseio.com/offered-places/${placeId}.json`,
           { ...updatedPlaces[updatedPlaceIndex], id: null }
         );
       }),
-      tap(resData => {
+      tap(() => {
         this._places.next(updatedPlaces);
       })
     );

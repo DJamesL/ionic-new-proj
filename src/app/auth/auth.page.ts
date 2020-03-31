@@ -12,7 +12,8 @@ import { NgForm } from '@angular/forms';
 })
 export class AuthPage implements OnInit {
   isLoading = false;
-  isLogin = false;
+  isLogin = true;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -23,6 +24,7 @@ export class AuthPage implements OnInit {
 
   onLogin() {
     this.isLoading = true;
+    this.authService.login();
     this.loadingCtrl
       .create({ keyboardClose: true, message: "Logging in.." })
       .then(loadingEl => {
@@ -33,8 +35,10 @@ export class AuthPage implements OnInit {
           this.router.navigateByUrl("/places/tabs/discover");
         }, 1500);
       });
-    this.authService.login();
+  }
 
+  onSwitchAuthMode() {
+    this.isLogin = !this.isLogin;
   }
 
   onSubmit(form: NgForm) {
@@ -54,9 +58,5 @@ export class AuthPage implements OnInit {
       //send a request to Sign-up server
       console.log('Connecting to Sign-up Server');
     }
-  }
-
-  onSwitchAuthMode() {
-    this.isLogin = !this.isLogin;
   }
 }
