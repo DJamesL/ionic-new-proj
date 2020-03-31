@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AuthGuard } from "./auth.guard";
 import { AuthService } from "./auth.service";
 import { Router } from "@angular/router";
-import { LoadingController } from "@ionic/angular";
+import { LoadingController, AlertController } from "@ionic/angular";
 import { NgForm } from "@angular/forms";
 
 @Component({
@@ -17,23 +17,37 @@ export class AuthPage implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController
   ) {}
 
   ngOnInit() {}
 
-  onLogin() {
+  authenticate(email: string, password: string) {
     this.isLoading = true;
     this.authService.login();
     this.loadingCtrl
       .create({ keyboardClose: true, message: "Logging in.." })
       .then(loadingEl => {
         loadingEl.present();
-        setTimeout(() => {
-          this.isLoading = false;
-          loadingEl.dismiss();
-          this.router.navigateByUrl("/places/tabs/discover");
-        }, 1500);
+        this.authService.signup(email, password).subscribe(
+          resData => {
+            console.log(resData);
+            this.isLoading = false;
+            loadingEl.dismiss();
+            this.router.navigateByUrl("/places/tabs/discover");
+          },
+          errData => {
+            loadingEl.dismiss();
+            const code = errData.error.error.message;
+            let message = "Could not sign you up, please try again";
+            if (code === "EMAIL_EXISTS") {
+              message = "This email address is already taken";
+            }
+            this.showAlert(message);
+            // console.log(errData);
+          }
+        );
       });
   }
 
@@ -50,15 +64,27 @@ export class AuthPage implements OnInit {
     const password = form.value.password;
     console.log(email, password);
 
-    if (this.isLogin) {
-      //send a request to Login server
-      console.log("Connecting to LOGIN Server");
-    } else {
-      //send a request to Sign-up server
-      console.log("Connecting to Sign-up Server");
-      this.authService.signup(email, password).subscribe(resData => {
-        console.log(resData);
-      });
-    }
+    this.authenticate(email, password);
+
+    // if (this.isLogin) {
+    //   //send a request to Login server
+    //   console.log("Connecting to LOGIN Server");
+    // } else {
+    //   //send a request to Sign-up server
+    //   console.log("Connecting to Sign-up Server");
+    //   // this.authService.signup(email, password).subscribe(resData => {
+    //   //   console.log(resData);
+    //   // });
+    // }
+  }
+
+  private showAlert(message: string) {
+    this.alertCtrl
+      .create({
+        header: "Authentication Failed",
+        message: message,
+        buttons: ["Okay"]
+      })
+      .then(alertEl => alertEl.present());
   }
 }
