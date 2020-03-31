@@ -366,3 +366,13 @@ add in firebase rules:
 https://angular.io/guide/architecture
 
 https://developers.google.com/maps/documentation/javascript/get-api-key
+
+AUTHENTICATION
+in Firebase console, see authentication of left pane
+- Click "Set-up sign-in"
+- Email/Password
+- google search for firebase auth rest api
+-- sign-up w/ email and Password
+-- sign-in w/ email and password
+- firebase API key in WebSetup (click the gear next to "Project Overview" <- upper leftside)
+-- apiKey: value

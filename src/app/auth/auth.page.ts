@@ -3,7 +3,7 @@ import { AuthGuard } from "./auth.guard";
 import { AuthService } from "./auth.service";
 import { Router } from "@angular/router";
 import { LoadingController } from "@ionic/angular";
-import { NgForm } from '@angular/forms';
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-auth",
@@ -18,9 +18,9 @@ export class AuthPage implements OnInit {
     private authService: AuthService,
     private router: Router,
     private loadingCtrl: LoadingController
-  ) { }
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   onLogin() {
     this.isLoading = true;
@@ -52,11 +52,13 @@ export class AuthPage implements OnInit {
 
     if (this.isLogin) {
       //send a request to Login server
-      console.log('Connecting to LOGIN Server');
-    }
-    else {
+      console.log("Connecting to LOGIN Server");
+    } else {
       //send a request to Sign-up server
-      console.log('Connecting to Sign-up Server');
+      console.log("Connecting to Sign-up Server");
+      this.authService.signup(email, password).subscribe(resData => {
+        console.log(resData);
+      });
     }
   }
 }
