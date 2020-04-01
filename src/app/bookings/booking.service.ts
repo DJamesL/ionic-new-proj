@@ -39,34 +39,40 @@ export class BookingService {
     dateTo: Date
   ) {
     let generatedId: string;
-    const newBooking = new Booking(
-      Math.random().toString(),
-      placeId,
-      this.authService.userId,
-      placeTitle,
-      placeImage,
-      firstName,
-      lastName,
-      guestNumber,
-      dateFrom,
-      dateTo
+    let newBooking: Booking;
+    this.authService.userId.pipe(
+      take(1),
+      switchMap(userId => {
+        if (!userId) {
+          throw new Error("No user ID found");
+        }
+        newBooking = new Booking(
+          Math.random().toString(),
+          placeId,
+          userId,
+          placeTitle,
+          placeImage,
+          firstName,
+          lastName,
+          guestNumber,
+          dateFrom,
+          dateTo
+        );
+        return this.http.post<{ name: string }>(
+          "https://ionic-angular-tuts.firebaseio.com/bookings.json",
+          { ...newBooking, id: null }
+        );
+      }),
+      switchMap(resData => {
+        generatedId = resData.name;
+        return this.bookings;
+      }),
+      take(1),
+      tap(bookings => {
+        newBooking.id = generatedId;
+        this._bookings.next(bookings.concat(newBooking));
+      })
     );
-    return this.http
-      .post<{ name: string }>(
-        "https://ionic-angular-tuts.firebaseio.com/bookings.json",
-        { ...newBooking, id: null }
-      )
-      .pipe(
-        switchMap(resData => {
-          generatedId = resData.name;
-          return this.bookings;
-        }),
-        take(1),
-        tap(bookings => {
-          newBooking.id = generatedId;
-          this._bookings.next(bookings.concat(newBooking));
-        })
-      );
   }
 
   cancelBooking(bookingId: string) {
