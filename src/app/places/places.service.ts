@@ -125,37 +125,43 @@ export class PlacesService {
     location: PlaceLocation
   ) {
     let generatedId: string; //local variable?
-    const newPlace = new Place(
-      Math.random().toString(),
-      title,
-      description,
-      "https://upload.wikimedia.org/wikipedia/commons/2/2f/Manhattan_Place.jpg",
-      price,
-      dateFrom,
-      dateTo,
-      this.authService.userId,
-      location
-    );
-    return this.http
-      .post<{ name: string }>(
-        "https://ionic-angular-tuts.firebaseio.com/offered-places.json",
-        {
-          ...newPlace,
-          id: null
+    let newPlace: Place;
+    return this.authService.userId.pipe(
+      take(1),
+      switchMap(userId => {
+        if (!userId) {
+          throw new Error("No UserId Found");
         }
-      )
-      .pipe(
-        switchMap(resData => {
-          generatedId = resData.name;
-          return this.places;
-        }),
-        take(1),
-        tap(places => {
-          //pipe(take(1)) take 1 update then unsubscribe
-          newPlace.id = generatedId;
-          this._places.next(places.concat(newPlace));
-        })
-      );
+        newPlace = new Place(
+          Math.random().toString(),
+          title,
+          description,
+          "https://upload.wikimedia.org/wikipedia/commons/2/2f/Manhattan_Place.jpg",
+          price,
+          dateFrom,
+          dateTo,
+          userId,
+          location
+        );
+        return this.http.post<{ name: string }>(
+          "https://ionic-angular-tuts.firebaseio.com/offered-places.json",
+          {
+            ...newPlace,
+            id: null
+          }
+        );
+      }),
+      switchMap(resData => {
+        generatedId = resData.name;
+        return this.places;
+      }),
+      take(1),
+      tap(places => {
+        //pipe(take(1)) take 1 update then unsubscribe
+        newPlace.id = generatedId;
+        this._places.next(places.concat(newPlace));
+      })
+    );
     // return this._places.pipe(
     //   take(1),
     //   delay(1000),
