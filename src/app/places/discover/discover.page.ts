@@ -5,6 +5,7 @@ import { Place } from "../places-data-model";
 import { MenuController } from "@ionic/angular";
 import { SegmentChangeEventDetail } from "@ionic/core";
 import { Subscription } from "rxjs";
+import { take } from "rxjs/operators";
 
 @Component({
   selector: "app-discover",
