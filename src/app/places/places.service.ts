@@ -1,5 +1,5 @@
 import { PlaceLocation } from "./location.model";
-import { HttpClientModule, HttpClient } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { AuthService } from "./../auth/auth.service";
 import { Injectable } from "@angular/core";
 import { Place } from "./places-data-model";
@@ -22,7 +22,6 @@ interface placeDataFromServer {
 })
 export class PlacesService {
   private _places = new BehaviorSubject<Place[]>([]); //init an empty array
-  private PlaceData: Place[];
 
   // new Place(
   //   "p1",

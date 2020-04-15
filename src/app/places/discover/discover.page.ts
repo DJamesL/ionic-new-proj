@@ -16,9 +16,8 @@ export class DiscoverPage implements OnInit, OnDestroy {
   loadedPlaces: Place[];
   listedLoadedPlaces: Place[];
   relevantPlaces: Place[];
-  private placesSub: Subscription;
-  private chosenFilter = "all";
   isLoading = false;
+  private placesSub: Subscription;
 
   constructor(
     private placesService: PlacesService,
@@ -27,19 +26,14 @@ export class DiscoverPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    // this.loadedPlaces = this.placesService.places;
+    console.log("NGON init start");
     this.placesSub = this.placesService.places.subscribe(places => {
       this.loadedPlaces = places;
-      if (this.chosenFilter === "all") {
-        this.relevantPlaces = this.loadedPlaces;
-        this.listedLoadedPlaces = this.relevantPlaces.slice(1);
-      } else {
-        this.relevantPlaces = this.loadedPlaces.filter(
-          place => place.userId !== this.authService.userId
-        );
-        this.listedLoadedPlaces = this.relevantPlaces.slice(1);
-      }
+      this.relevantPlaces = this.loadedPlaces;
+      this.listedLoadedPlaces = this.relevantPlaces.slice(1);
     });
+    console.log(this.listedLoadedPlaces);
+    console.log("NGON init end");
   }
 
   ionViewWillEnter() {
@@ -47,6 +41,8 @@ export class DiscoverPage implements OnInit, OnDestroy {
     this.placesService.fetchPlaces().subscribe(() => {
       this.isLoading = false;
     });
+    console.log(this.listedLoadedPlaces);
+    console.log("WILL ENTER");
   }
 
   onOpenMenu() {
@@ -54,20 +50,19 @@ export class DiscoverPage implements OnInit, OnDestroy {
   }
 
   onFilterUpdate(event: CustomEvent<SegmentChangeEventDetail>) {
-    // console.log(event.detail);
-    this.authService.userId.pipe(take(1)).subscribe(userId => {
+    this.authService.userId.subscribe(userId => {
       if (event.detail.value === "all") {
         this.relevantPlaces = this.loadedPlaces;
         this.listedLoadedPlaces = this.relevantPlaces.slice(1);
-        this.chosenFilter = "all";
       } else {
         this.relevantPlaces = this.loadedPlaces.filter(
           place => place.userId !== userId
         );
         this.listedLoadedPlaces = this.relevantPlaces.slice(1);
-        this.chosenFilter = "bookable";
       }
     });
+    console.log(this.listedLoadedPlaces);
+    console.log("onFilerEnd");
   }
 
   ngOnDestroy() {
